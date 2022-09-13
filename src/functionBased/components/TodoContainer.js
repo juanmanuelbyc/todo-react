@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import TodosList from './TodosList';
 import { v4 as uuidv4 } from 'uuid';
 import { Routes, Route } from 'react-router-dom';
 import About from '../pages/About';
@@ -7,6 +6,7 @@ import NotMatch from '../pages/NotMatch';
 import Navbar from './Navbar';
 import Header from './Header';
 import InputTodo from './InputTodo';
+import TodosList from './TodosList';
 
 const TodoContainer = () => {
   function getInitialTodos() {
@@ -27,7 +27,7 @@ const TodoContainer = () => {
         };
       }
       return todo;
-    }),);
+    }));
   };
 
   const delTodo = (id) => {
@@ -39,7 +39,7 @@ const TodoContainer = () => {
   const addTodoItem = (title) => {
     const newTodo = {
       id: uuidv4(),
-      title: title,
+      title,
       completed: false,
     };
     setTodos([...todos, newTodo]);
@@ -52,7 +52,7 @@ const TodoContainer = () => {
           todo.title = updatedTitle;
         }
         return todo;
-      })
+      }),
     );
   };
 
@@ -69,7 +69,7 @@ const TodoContainer = () => {
         <Route
           path="/"
           element={
-            <div className="container">
+            (<div className="container">
               <div className="inner">
                 <Header />
                 <InputTodo addTodoProps={addTodoItem} />
@@ -80,7 +80,7 @@ const TodoContainer = () => {
                   setUpdate={setUpdate}
                 />
               </div>
-            </div>
+            </div>)
           }
         />
         <Route path="/about" element={<About />} />
