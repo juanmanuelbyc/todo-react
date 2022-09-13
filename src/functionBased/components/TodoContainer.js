@@ -48,8 +48,9 @@ const TodoContainer = () => {
   const setUpdate = (updatedTitle, id) => {
     setTodos(
       todos.map((todo) => {
-        if (todo.id === id) {
-          todo.title = updatedTitle;
+        const temp = todo;
+        if (temp.id === id) {
+          temp.title = updatedTitle;
         }
         return todo;
       }),
@@ -68,8 +69,8 @@ const TodoContainer = () => {
       <Routes>
         <Route
           path="/"
-          element={
-            (<div className="container">
+          element={(
+            <div className="container">
               <div className="inner">
                 <Header />
                 <InputTodo addTodoProps={addTodoItem} />
@@ -80,8 +81,8 @@ const TodoContainer = () => {
                   setUpdate={setUpdate}
                 />
               </div>
-            </div>)
-          }
+            </div>
+          )}
         />
         <Route path="/about" element={<About />} />
         <Route path="*" element={<NotMatch />} />

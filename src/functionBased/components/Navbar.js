@@ -18,12 +18,13 @@ const Navbar = () => {
   return (
     <nav className="navBar">
       <ul>
-        {links.map((link) => <li key={link.id}>
+        {links.map((link) => (
+          <li key={link.id}>
             <NavLink to={link.path} className="active-link">
               {link.text}
             </NavLink>
-          </li>,
-        )}
+          </li>
+        ))}
       </ul>
     </nav>
   );

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import styles from './TodoItem.module.css';
 import PropTypes from 'prop-types';
+import styles from './TodoItem.module.css';
 
 const TodoItem = (props) => {
   const [editing, setEditing] = useState(false);
@@ -22,7 +22,9 @@ const TodoItem = (props) => {
     textDecoration: 'line-through',
   };
 
-  const { completed, id, title } = props.todo;
+  const {
+    todo, handleChangeProps, deleteTodoProps, setUpdate,
+  } = props;
 
   const viewMode = {};
   const editMode = {};
@@ -39,19 +41,19 @@ const TodoItem = (props) => {
         <input
           type="checkbox"
           className={styles.checkbox}
-          checked={completed}
-          onChange={() => props.handleChangeProps(id)}
+          checked={todo.completed}
+          onChange={() => handleChangeProps(todo.id)}
         />
-        <button onClick={() => props.deleteTodoProps(id)}>Delete</button>
-        <span style={completed ? completedStyle : null}>{title}</span>
+        <button type="button" onClick={() => deleteTodoProps(todo.id)}>Delete</button>
+        <span style={todo.completed ? completedStyle : null}>{todo.title}</span>
       </div>
       <input
         type="text"
         style={editMode}
         className={styles.textInput}
-        value={title}
+        value={todo.title}
         onChange={(e) => {
-          props.setUpdate(e.target.value, id);
+          setUpdate(e.target.value, todo.id);
         }}
         onKeyDown={handleUpdatedDone}
       />
@@ -64,7 +66,10 @@ TodoItem.propTypes = {
     completed: PropTypes.bool.isRequired,
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-  })
+  }).isRequired,
+  setUpdate: PropTypes.func.isRequired,
+  deleteTodoProps: PropTypes.func.isRequired,
+  handleChangeProps: PropTypes.func.isRequired,
 };
 
 export default TodoItem;
