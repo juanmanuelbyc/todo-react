@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from './TodoItem.module.css';
 
 const TodoItem = (props) => {
@@ -56,6 +56,14 @@ const TodoItem = (props) => {
       />
     </li>
   );
+};
+
+InputTodo.propTypes = {
+  todo: PropTypes.shape({
+    completed: PropTypes.bool.isRequired,
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+  })
 };
 
 export default TodoItem;

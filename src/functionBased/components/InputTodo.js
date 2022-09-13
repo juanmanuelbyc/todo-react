@@ -14,8 +14,9 @@ const InputTodo = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const [addTodoProps] = props;
     if (inputText.title.trim()) {
-      props.addTodoProps(inputText.title);
+      addTodoProps(inputText.title);
       setInputText({
         title: '',
       });
@@ -37,6 +38,10 @@ const InputTodo = (props) => {
       <button type="submit" className="input-submit">Submit</button>
     </form>
   );
+};
+
+InputTodo.propTypes = {
+  addTodoProps: PropTypes.func.isRequired,
 };
 
 export default InputTodo;
