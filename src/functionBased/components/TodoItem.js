@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './TodoItem.module.css';
+import PropTypes from 'prop-types';
 
 const TodoItem = (props) => {
   const [editing, setEditing] = useState(false);
@@ -58,10 +59,10 @@ const TodoItem = (props) => {
   );
 };
 
-InputTodo.propTypes = {
+TodoItem.propTypes = {
   todo: PropTypes.shape({
     completed: PropTypes.bool.isRequired,
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
   })
 };
